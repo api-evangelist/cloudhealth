@@ -3,9 +3,9 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/cloudhealth/refs/heads/main/apis.yml
 name: CloudHealth
 tags:
+  - Cloud Governance
   - Cloud Management
   - Cost Optimization
-  - Cloud Governance
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
