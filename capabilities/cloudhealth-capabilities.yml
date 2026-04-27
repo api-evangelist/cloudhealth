@@ -1,0 +1,116 @@
+# Naftiko capabilities profile for CloudHealth.
+# Capabilities are derived from the public CloudHealth REST API
+# documentation at https://apidocs.cloudhealthtech.com/.
+provider: cloudhealth
+name: VMware Tanzu CloudHealth
+description: >-
+  Multi-cloud financial and operational management platform offering cost
+  reporting, asset inventory, perspectives (groupings), policies, tagging,
+  metrics, and partner/MSP provisioning.
+capabilities:
+  - id: cloudhealth.account.list
+    name: List cloud accounts
+    description: Retrieve all AWS, Azure, GCP, and data-center accounts onboarded into CloudHealth.
+    inputs:
+      - bearer-token
+    outputs:
+      - accounts
+  - id: cloudhealth.account.create
+    name: Onboard cloud account
+    description: Onboard a new AWS/Azure/GCP account into CloudHealth.
+    inputs:
+      - bearer-token
+      - vendor
+      - credentials
+    outputs:
+      - account
+  - id: cloudhealth.assets.query
+    name: Query assets
+    description: Query inventoried cloud assets across vendors with filters.
+    inputs:
+      - bearer-token
+      - api-version
+      - filters
+    outputs:
+      - assets
+  - id: cloudhealth.report.olap
+    name: Run OLAP cost or usage report
+    description: Execute predefined or ad-hoc OLAP reports such as cost history, current cost, instance usage.
+    inputs:
+      - bearer-token
+      - report-type
+      - interval
+      - dimensions
+      - measures
+    outputs:
+      - report
+  - id: cloudhealth.perspective.list
+    name: List perspectives
+    description: Return all perspective schemas (custom asset groupings).
+    inputs:
+      - bearer-token
+      - active-only
+    outputs:
+      - perspectives
+  - id: cloudhealth.perspective.create
+    name: Create or update perspective
+    description: Create or update a perspective schema (groups + rules) for asset categorization.
+    inputs:
+      - bearer-token
+      - perspective
+    outputs:
+      - perspective
+  - id: cloudhealth.tagging.update
+    name: Update asset tags
+    description: Apply or modify tags on inventoried cloud assets via the CloudHealth platform.
+    inputs:
+      - bearer-token
+      - asset-type
+      - asset-id
+      - tags
+    outputs:
+      - status
+  - id: cloudhealth.metrics.upload
+    name: Upload custom metrics
+    description: Push custom metric data points associated with an asset into CloudHealth.
+    inputs:
+      - bearer-token
+      - asset-type
+      - asset-id
+      - metrics
+    outputs:
+      - status
+  - id: cloudhealth.metrics.query
+    name: Query metrics
+    description: Retrieve metrics for an asset over a time range.
+    inputs:
+      - bearer-token
+      - asset-type
+      - asset-id
+      - time-range
+    outputs:
+      - metrics
+  - id: cloudhealth.policy.list
+    name: List policies
+    description: List configured cost, usage, and governance policies.
+    inputs:
+      - bearer-token
+    outputs:
+      - policies
+  - id: cloudhealth.partner.customer.create
+    name: Provision partner customer
+    description: Provision a new customer tenant under a CloudHealth partner account.
+    inputs:
+      - bearer-token
+      - customer
+    outputs:
+      - customer
+  - id: cloudhealth.partner.aws-account.assign
+    name: Assign AWS account to customer
+    description: Associate an AWS account with a partner-managed customer.
+    inputs:
+      - bearer-token
+      - customer-id
+      - aws-account-id
+    outputs:
+      - status

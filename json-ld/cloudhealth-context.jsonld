@@ -1,0 +1,68 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ch": "https://cloudhealthtech.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Account": {
+      "@id": "ch:Account",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "vendor": "ch:cloudVendor",
+        "ownerId": "ch:ownerId",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Asset": {
+      "@id": "ch:Asset",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "type": "ch:assetType",
+        "accountId": "ch:accountId",
+        "region": "ch:region",
+        "tags": "ch:tags"
+      }
+    },
+
+    "Perspective": {
+      "@id": "ch:Perspective",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "active": "ch:active",
+        "groups": "ch:groups",
+        "rules": "ch:rules"
+      }
+    },
+
+    "Report": {
+      "@id": "ch:Report",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "type": "ch:reportType",
+        "interval": "ch:interval",
+        "dimensions": "ch:dimensions",
+        "measures": "ch:measures"
+      }
+    },
+
+    "Policy": {
+      "@id": "ch:Policy",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "ruleType": "ch:ruleType",
+        "active": "ch:active"
+      }
+    }
+  }
+}
