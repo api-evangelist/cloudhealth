@@ -40,6 +40,8 @@ apis:
         type: Documentation
       - url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
         type: Authentication
+      - url: openapi/cloudhealth-openapi.yml
+        type: OpenAPI
     description: >-
       REST API at https://chapi.cloudhealthtech.com for managing AWS/Azure
       accounts, generating OLAP cost and usage reports, querying assets,
