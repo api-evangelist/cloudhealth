@@ -15,7 +15,7 @@ access: 3rd-Party
 created: '2026-03-16'
 modified: '2026-04-26'
 position: Consumer
-x-type: company
+kind: company
 x-company: Broadcom (formerly VMware / Tanzu)
 description: >-
   CloudHealth (now VMware Tanzu CloudHealth, owned by Broadcom) is a
@@ -84,9 +84,9 @@ common:
     url: https://techdocs.broadcom.com/us/en/vmware-tanzu/cloudhealth/tanzu-cloudhealth/saas/tnz-cloudhealth/index.html
   - type: Authentication
     url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.broadcom.com/company/legal/privacy/policy
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/cloudhealth-context.jsonld
   - type: Spectral
     url: rules/cloudhealth-rules.yml
