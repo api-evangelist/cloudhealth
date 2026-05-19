@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CloudHealth REST API — SSO
+  description: 'CloudHealth REST API — SSO. 1 operations. Lead operation: Get SSO configuration. Self-contained Naftiko capability
+    covering one Cloudhealth business surface.'
+  tags:
+  - Cloudhealth
+  - SSO
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CLOUDHEALTH_API_KEY: CLOUDHEALTH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloudhealth-sso
+    baseUri: https://chapi.cloudhealthtech.com
+    description: CloudHealth REST API — SSO business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-sso-configuration
+      path: /v1/sso/configuration
+      operations:
+      - name: getssoconfiguration
+        method: GET
+        description: Get SSO configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CLOUDHEALTH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloudhealth-sso-rest
+    port: 8080
+    description: REST adapter for CloudHealth REST API — SSO. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/sso/configuration
+      name: v1-sso-configuration
+      description: REST surface for v1-sso-configuration.
+      operations:
+      - method: GET
+        name: getssoconfiguration
+        description: Get SSO configuration
+        call: cloudhealth-sso.getssoconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloudhealth-sso-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CloudHealth REST API — SSO. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-sso-configuration
+      description: Get SSO configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudhealth-sso.getssoconfiguration
+      outputParameters:
+      - type: object
+        mapping: $.
