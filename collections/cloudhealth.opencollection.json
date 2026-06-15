@@ -1,0 +1,240 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudHealth REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AWS Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List AWS accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://chapi.cloudhealthtech.com/v1/aws_accounts",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all configured AWS accounts with pagination support."
+        },
+        {
+          "info": {
+            "name": "Enable an AWS account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://chapi.cloudhealthtech.com/v1/aws_accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable an AWS Account in the CloudHealth Platform."
+        },
+        {
+          "info": {
+            "name": "Get an AWS account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://chapi.cloudhealthtech.com/v1/aws_accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Fetch details for a single AWS account by ID."
+        },
+        {
+          "info": {
+            "name": "Update an AWS account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://chapi.cloudhealthtech.com/v1/aws_accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify attributes of an existing AWS account configuration."
+        },
+        {
+          "info": {
+            "name": "Delete an AWS account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://chapi.cloudhealthtech.com/v1/aws_accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove an AWS account from the CloudHealth platform."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Perspectives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List perspective schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://chapi.cloudhealthtech.com/v1/perspective_schemas"
+          },
+          "docs": "Retrieve a list of all Perspectives you have created."
+        },
+        {
+          "info": {
+            "name": "Create a perspective",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://chapi.cloudhealthtech.com/v1/perspective_schemas",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new perspective with associated schema."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cost history report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://chapi.cloudhealthtech.com/olap_reports/cost/history",
+            "params": [
+              {
+                "name": "dimensions",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "measures",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query the Cost History report with customizable dimensions and measures."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://chapi.cloudhealthtech.com/api/search",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build a search query that retrieves assets that match specific criteria."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SSO",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SSO configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://chapi.cloudhealthtech.com/v1/sso/configuration"
+          },
+          "docs": "Retrieve existing SSO configuration settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
