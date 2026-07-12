@@ -70,6 +70,10 @@ apis:
     Partner-specific REST endpoints for MSPs to provision customers, assign AWS/Azure accounts, manage custom price
     books, billing rules, and customer statements at scale.
 common:
+- type: DomainSecurity
+  url: security/cloudhealth-domain-security.yml
+- type: Authentication
+  url: authentication/cloudhealth-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/CloudHealth
 - type: LinkedIn
@@ -88,6 +92,8 @@ common:
   url: json-ld/cloudhealth-context.jsonld
 - type: Spectral
   url: rules/cloudhealth-rules.yml
+- type: Blog
+  url: https://blogs.vmware.com/feed/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
