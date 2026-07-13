@@ -1,0 +1,13 @@
+{
+  "repo": "cloudhealth",
+  "feeds": [
+    {
+      "source": "https://blogs.vmware.com/feed/",
+      "feed_url": "https://blogs.vmware.com/feed/",
+      "title": "VMware Blogs",
+      "saved": 5
+    }
+  ],
+  "fetched": "2026-07-11T11:43:46Z",
+  "post_count": 15
+}
