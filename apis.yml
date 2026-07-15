@@ -70,6 +70,8 @@ apis:
     Partner-specific REST endpoints for MSPs to provision customers, assign AWS/Azure accounts, manage custom price
     books, billing rules, and customer statements at scale.
 common:
+- type: AgenticAccess
+  url: agentic-access/cloudhealth-agentic-access.yml
 - type: DomainSecurity
   url: security/cloudhealth-domain-security.yml
 - type: Authentication
