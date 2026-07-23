@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: CloudHealth REST AWS Accounts Perspectives API
+  description: The CloudHealth REST API provides programmatic access to multi-cloud cost management, AWS account configuration, perspectives (groupings), OLAP cost reports, asset search, and SSO configuration. Authentication uses Bearer tokens issued from the CloudHealth UI.
+  version: 1.0.0
+  contact:
+    name: CloudHealth Support
+    url: https://apidocs.cloudhealthtech.com/
+  license:
+    name: Proprietary
+    url: https://www.broadcom.com/company/legal/terms-of-use
+servers:
+- url: https://chapi.cloudhealthtech.com
+  description: CloudHealth REST API
+security:
+- bearerAuth: []
+tags:
+- name: Perspectives
+  description: Perspective (grouping) management.
+paths:
+  /v1/perspective_schemas:
+    get:
+      operationId: listPerspectives
+      summary: List perspective schemas
+      description: Retrieve a list of all Perspectives you have created.
+      tags:
+      - Perspectives
+      responses:
+        '200':
+          description: Perspective list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+    post:
+      operationId: createPerspective
+      summary: Create a perspective
+      description: Create a new perspective with associated schema.
+      tags:
+      - Perspectives
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenericRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+components:
+  schemas:
+    GenericRequest:
+      type: object
+      additionalProperties: true
+    GenericResponse:
+      type: object
+      additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token issued from the CloudHealth UI.
+x-generated-from: https://apidocs.cloudhealthtech.com/
+x-generated-by: claude-crawl-2026-05-08
