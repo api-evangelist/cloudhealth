@@ -9,7 +9,20 @@ tags:
 - FinOps
 - Multi-Cloud
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cloudhealth.png
 access: 3rd-Party
 created: '2026-03-16'
 modified: '2026-05-19'
@@ -23,25 +36,6 @@ description: >-
   The platform exposes both a REST API and a GraphQL API for programmatic access to reports, assets, accounts,
   perspectives, tags, metrics, and partner customer provisioning.
 apis:
-- aid: cloudhealth:cloudhealth-rest-api
-  name: CloudHealth REST API
-  tags:
-  - Assets
-  - Cost Optimization
-  - Perspectives
-  - Reports
-  humanURL: https://apidocs.cloudhealthtech.com/
-  properties:
-  - url: https://apidocs.cloudhealthtech.com/
-    type: Documentation
-  - url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
-    type: Authentication
-  - url: openapi/cloudhealth-openapi.yml
-    type: OpenAPI
-  description: >-
-    REST API at https://chapi.cloudhealthtech.com for managing AWS/Azure accounts, generating OLAP cost and usage
-    reports, querying assets, managing perspectives (groupings), tagging, metrics ingest/query, policies, and
-    partner-tenant provisioning. Authentication uses Bearer tokens issued from the CloudHealth UI.
 - aid: cloudhealth:cloudhealth-graphql-api
   name: CloudHealth GraphQL API
   tags:
@@ -54,8 +48,8 @@ apis:
   - url: graphql/cloudhealth-graphql.md
     type: GraphQL
   description: >-
-    GraphQL API exposed in the CloudHealth UI under Setup > Admin > GraphQL Explorer for programmatic interaction with
-    the platform's reporting and asset data model.
+    GraphQL API exposed in the CloudHealth UI under Setup > Admin > GraphQL Explorer for programmatic
+    interaction with the platform's reporting and asset data model.
 - aid: cloudhealth:cloudhealth-partner-api
   name: CloudHealth Partner API
   tags:
@@ -67,8 +61,73 @@ apis:
   - url: https://apidocs.cloudhealthtech.com/#partner
     type: Documentation
   description: >-
-    Partner-specific REST endpoints for MSPs to provision customers, assign AWS/Azure accounts, manage custom price
-    books, billing rules, and customer statements at scale.
+    Partner-specific REST endpoints for MSPs to provision customers, assign AWS/Azure accounts, manage
+    custom price books, billing rules, and customer statements at scale.
+- aid: cloudhealth:cloudhealth-aws-accounts-api
+  name: CloudHealth AWS Accounts API
+  description: AWS account configuration management.
+  humanURL: https://apidocs.cloudhealthtech.com/
+  tags:
+  - AWS Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudhealth-aws-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.cloudhealthtech.com/
+  - type: Authentication
+    url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
+- aid: cloudhealth:cloudhealth-perspectives-api
+  name: CloudHealth Perspectives API
+  description: Perspective (grouping) management.
+  humanURL: https://apidocs.cloudhealthtech.com/
+  tags:
+  - Perspectives
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudhealth-perspectives-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.cloudhealthtech.com/
+  - type: Authentication
+    url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
+- aid: cloudhealth:cloudhealth-reports-api
+  name: CloudHealth Reports API
+  description: OLAP cost and usage reports.
+  humanURL: https://apidocs.cloudhealthtech.com/
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudhealth-reports-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.cloudhealthtech.com/
+  - type: Authentication
+    url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
+- aid: cloudhealth:cloudhealth-search-api
+  name: CloudHealth Search API
+  description: Asset search.
+  humanURL: https://apidocs.cloudhealthtech.com/
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudhealth-search-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.cloudhealthtech.com/
+  - type: Authentication
+    url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
+- aid: cloudhealth:cloudhealth-sso-api
+  name: CloudHealth SSO API
+  description: Single sign-on configuration.
+  humanURL: https://apidocs.cloudhealthtech.com/
+  tags:
+  - SSO
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudhealth-sso-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.cloudhealthtech.com/
+  - type: Authentication
+    url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
 common:
 - type: AgenticAccess
   url: agentic-access/cloudhealth-agentic-access.yml
