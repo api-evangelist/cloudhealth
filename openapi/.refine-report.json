@@ -1,0 +1,22 @@
+{
+  "provider": "cloudhealth",
+  "sources": [
+    "cloudhealth-aws-accounts-api-openapi.yml",
+    "cloudhealth-perspectives-api-openapi.yml",
+    "cloudhealth-reports-api-openapi.yml",
+    "cloudhealth-search-api-openapi.yml",
+    "cloudhealth-sso-api-openapi.yml"
+  ],
+  "outputs": [
+    "cloudhealth-aws-accounts-api-openapi.yml",
+    "cloudhealth-perspectives-api-openapi.yml",
+    "cloudhealth-reports-api-openapi.yml",
+    "cloudhealth-search-api-openapi.yml",
+    "cloudhealth-sso-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
