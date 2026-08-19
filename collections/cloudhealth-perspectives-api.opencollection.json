@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudHealth REST AWS Accounts Perspectives API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Perspectives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List perspective schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://chapi.cloudhealthtech.com/v1/perspective_schemas"
+          },
+          "docs": "Retrieve a list of all Perspectives you have created."
+        },
+        {
+          "info": {
+            "name": "Create a perspective",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://chapi.cloudhealthtech.com/v1/perspective_schemas",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new perspective with associated schema."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,152 @@
+{
+  "item": [
+    {
+      "id": "9dd7f2b6-9005-40ba-bf07-18b9fd802560",
+      "name": "Reports",
+      "description": {
+        "content": "OLAP cost and usage reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba57143e-5aac-46de-b95a-dfc95e636c45",
+          "name": "Cost history report",
+          "request": {
+            "name": "Cost history report",
+            "description": {
+              "content": "Query the Cost History report with customizable dimensions and measures.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "olap_reports",
+                "cost",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dimensions",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "measures",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "955a26fe-1482-490e-ae77-e74877df7095",
+              "name": "Cost history result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "olap_reports",
+                    "cost",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dimensions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "measures",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 1000.7705688334978\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://chapi.cloudhealthtech.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "75c3cfa3-7198-4159-a95a-7ead350a6132",
+    "name": "CloudHealth REST AWS Accounts Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CloudHealth REST API provides programmatic access to multi-cloud cost management, AWS account configuration, perspectives (groupings), OLAP cost reports, asset search, and SSO configuration. Authentication uses Bearer tokens issued from the CloudHealth UI.\n\nContact Support:\n Name: CloudHealth Support",
+      "type": "text/plain"
+    }
+  }
+}

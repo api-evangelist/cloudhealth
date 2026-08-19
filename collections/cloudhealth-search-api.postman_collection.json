@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "c41b9032-7e01-4bf6-9842-e93dc74c0e26",
+      "name": "Search",
+      "description": {
+        "content": "Asset search.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "605250be-43ca-4aeb-a623-9b687bc0dc53",
+          "name": "Search assets",
+          "request": {
+            "name": "Search assets",
+            "description": {
+              "content": "Build a search query that retrieves assets that match specific criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6afcdf70-6f68-43dd-87c3-9347b153f6f5",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://chapi.cloudhealthtech.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "55fa9feb-1679-43fb-a56f-087c50c4b9bd",
+    "name": "CloudHealth REST AWS Accounts Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CloudHealth REST API provides programmatic access to multi-cloud cost management, AWS account configuration, perspectives (groupings), OLAP cost reports, asset search, and SSO configuration. Authentication uses Bearer tokens issued from the CloudHealth UI.\n\nContact Support:\n Name: CloudHealth Support",
+      "type": "text/plain"
+    }
+  }
+}

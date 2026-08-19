@@ -1,0 +1,123 @@
+{
+  "item": [
+    {
+      "id": "e44471a7-42af-4a28-830a-638c4fbb863a",
+      "name": "SSO",
+      "description": {
+        "content": "Single sign-on configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "254838ea-0e64-4003-8ad8-0d16bd9ed123",
+          "name": "Get SSO configuration",
+          "request": {
+            "name": "Get SSO configuration",
+            "description": {
+              "content": "Retrieve existing SSO configuration settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sso",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83832e77-b50f-4b63-97ba-f8a4033a2c31",
+              "name": "SSO configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sso",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": 4649.876894002573\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://chapi.cloudhealthtech.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9b862f49-6a5b-496f-956b-64fef98cd99f",
+    "name": "CloudHealth REST AWS Accounts SSO API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CloudHealth REST API provides programmatic access to multi-cloud cost management, AWS account configuration, perspectives (groupings), OLAP cost reports, asset search, and SSO configuration. Authentication uses Bearer tokens issued from the CloudHealth UI.\n\nContact Support:\n Name: CloudHealth Support",
+      "type": "text/plain"
+    }
+  }
+}

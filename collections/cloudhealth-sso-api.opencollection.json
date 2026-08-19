@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudHealth REST AWS Accounts SSO API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SSO",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SSO configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://chapi.cloudhealthtech.com/v1/sso/configuration"
+          },
+          "docs": "Retrieve existing SSO configuration settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

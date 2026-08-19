@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudHealth REST AWS Accounts Reports API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cost history report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://chapi.cloudhealthtech.com/olap_reports/cost/history",
+            "params": [
+              {
+                "name": "dimensions",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "measures",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query the Cost History report with customizable dimensions and measures."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

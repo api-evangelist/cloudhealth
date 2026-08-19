@@ -1,0 +1,222 @@
+{
+  "item": [
+    {
+      "id": "30765aa1-2746-4131-93c7-4bd99024590c",
+      "name": "Perspectives",
+      "description": {
+        "content": "Perspective (grouping) management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a39d9879-0f35-4dc8-87a1-aeade74598ee",
+          "name": "List perspective schemas",
+          "request": {
+            "name": "List perspective schemas",
+            "description": {
+              "content": "Retrieve a list of all Perspectives you have created.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "perspective_schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c4f2bee-d482-43ca-89bf-0c6f5860115c",
+              "name": "Perspective list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "perspective_schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true,\n  \"key_1\": 3076.9453396729273\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e64ace2-1ab9-47b6-9182-37dd6f72e00d",
+          "name": "Create a perspective",
+          "request": {
+            "name": "Create a perspective",
+            "description": {
+              "content": "Create a new perspective with associated schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "perspective_schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": true,\n  \"key_1\": 9403.910466973659,\n  \"key_2\": 5194\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aef358d2-8aff-41a9-82ec-4dc188e0446f",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "perspective_schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true,\n  \"key_1\": 3076.9453396729273\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true,\n  \"key_1\": 3076.9453396729273\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://chapi.cloudhealthtech.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1737423e-74ac-41b0-82de-80663f379fa8",
+    "name": "CloudHealth REST AWS Accounts Perspectives API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CloudHealth REST API provides programmatic access to multi-cloud cost management, AWS account configuration, perspectives (groupings), OLAP cost reports, asset search, and SSO configuration. Authentication uses Bearer tokens issued from the CloudHealth UI.\n\nContact Support:\n Name: CloudHealth Support",
+      "type": "text/plain"
+    }
+  }
+}
