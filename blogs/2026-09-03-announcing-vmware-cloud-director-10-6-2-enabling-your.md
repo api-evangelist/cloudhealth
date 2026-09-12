@@ -1,0 +1,8 @@
+---
+title: "Announcing VMware Cloud Director 10.6.2, Enabling Your Migration to VMware Cloud Foundation 9.1"
+url: "https://blogs.vmware.com/cloudprovider/2026/09/announcing-vmware-cloud-director-10-6-2-enabling-your-migration-to-vmware-cloud-foundation-9-1.html"
+date: "2026-09-03"
+author: "jaikishan tayal"
+feed_url: "https://blogs.vmware.com/feed/"
+---
+There’s a moment when the question stops being “what’s new?” and becomes “what does this version let me do next?” VMware Cloud Director 10.6.2 is that moment. We’re excited to announce that VMware Cloud Director 10.6.2 is now generally available. If we had to sum up this release in one sentence, it’s all about getting … Continued The post Announcing VMware Cloud Director 10.6.2, Enabling Your Migration to VMware Cloud Foundation 9.1 appeared first on VMware Blogs .
