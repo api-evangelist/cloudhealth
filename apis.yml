@@ -21,23 +21,25 @@ deliveryModel:
   generated: '2026-08-28'
   method: derived
 accessModel:
-  pricing: freemium
-  onboarding: self-serve
+  pricing: paid
+  onboarding: unknown
   trial: false
-  try_now: true
+  try_now: false
   public: false
-  label: Freemium · Self-serve signup
-  confidence: medium
+  label: Paid
+  confidence: high
   source:
   - plans
   - authentication
+  - scopes
+  - rate-limits
   - security
-  generated: '2026-09-03'
+  generated: '2026-09-16'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cloudhealth.png
 access: 3rd-Party
 created: '2026-03-16'
-modified: '2026-08-21'
+modified: '2026-09-16'
 position: Consuming
 kind: company
 x-company: Broadcom (formerly VMware / Tanzu)
@@ -49,33 +51,42 @@ description: CloudHealth (now VMware Tanzu CloudHealth, owned by Broadcom) is a 
 apis:
 - aid: cloudhealth:cloudhealth-graphql-api
   name: CloudHealth GraphQL API
+  description: GraphQL API at a single endpoint (https://apps.cloudhealthtech.com/graphql) covering budgets, FlexReports,
+    FlexOrgs, saved reports, savings plan and commitment recommendations, cost reallocation and GCP billing accounts.
+    Clients exchange an API key for a 15-minute access token with the loginAPI mutation.
+  humanURL: https://help.cloudhealthtech.com/graphql-api/
+  baseURL: https://apps.cloudhealthtech.com/graphql
   tags:
   - GraphQL
   - Reports
-  humanURL: https://apidocs.cloudhealthtech.com/
   properties:
-  - url: https://apidocs.cloudhealthtech.com/
+  - url: https://help.cloudhealthtech.com/graphql-api/
     type: Documentation
   - url: graphql/cloudhealth-graphql.md
     type: GraphQL
-  description: GraphQL API exposed in the CloudHealth UI under Setup > Admin > GraphQL Explorer for programmatic
-    interaction with the platform's reporting and asset data model.
+  - url: graphql/cloudhealth-graphql-public-schema.graphql
+    type: GraphQL
+    name: Anonymous introspection schema (pre-auth slice)
+  - url: https://help.cloudhealthtech.com/graphql-api/#authentication
+    type: Authentication
 - aid: cloudhealth:cloudhealth-partner-api
   name: CloudHealth Partner API
+  description: Partner-specific REST endpoints for MSPs to provision customers, assign AWS/Azure accounts, manage
+    custom price books, billing rules, and customer statements at scale.
+  humanURL: https://apidocs.cloudhealthtech.com/#partner
+  baseURL: https://chapi.cloudhealthtech.com
   tags:
   - MSP
   - Partner
   - Provisioning
-  humanURL: https://apidocs.cloudhealthtech.com/#partner
   properties:
   - url: https://apidocs.cloudhealthtech.com/#partner
     type: Documentation
-  description: Partner-specific REST endpoints for MSPs to provision customers, assign AWS/Azure accounts, manage
-    custom price books, billing rules, and customer statements at scale.
 - aid: cloudhealth:cloudhealth-aws-accounts-api
   name: CloudHealth AWS Accounts API
   description: AWS account configuration management.
   humanURL: https://apidocs.cloudhealthtech.com/
+  baseURL: https://chapi.cloudhealthtech.com
   tags:
   - AWS Accounts
   properties:
@@ -84,11 +95,14 @@ apis:
   - type: Documentation
     url: https://apidocs.cloudhealthtech.com/
   - type: Authentication
-    url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
+    url: https://apidocs.cloudhealthtech.com/#documentation_getting-your-api-key
+  - type: Overlay
+    url: overlays/cloudhealth-aws-accounts-overlay.yaml
 - aid: cloudhealth:cloudhealth-perspectives-api
   name: CloudHealth Perspectives API
   description: Perspective (grouping) management.
   humanURL: https://apidocs.cloudhealthtech.com/
+  baseURL: https://chapi.cloudhealthtech.com
   tags:
   - Perspectives
   properties:
@@ -97,11 +111,14 @@ apis:
   - type: Documentation
     url: https://apidocs.cloudhealthtech.com/
   - type: Authentication
-    url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
+    url: https://apidocs.cloudhealthtech.com/#documentation_getting-your-api-key
+  - type: Overlay
+    url: overlays/cloudhealth-perspectives-overlay.yaml
 - aid: cloudhealth:cloudhealth-reports-api
   name: CloudHealth Reports API
   description: OLAP cost and usage reports.
   humanURL: https://apidocs.cloudhealthtech.com/
+  baseURL: https://chapi.cloudhealthtech.com
   tags:
   - Reports
   properties:
@@ -110,11 +127,14 @@ apis:
   - type: Documentation
     url: https://apidocs.cloudhealthtech.com/
   - type: Authentication
-    url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
+    url: https://apidocs.cloudhealthtech.com/#documentation_getting-your-api-key
+  - type: Overlay
+    url: overlays/cloudhealth-reports-overlay.yaml
 - aid: cloudhealth:cloudhealth-search-api
   name: CloudHealth Search API
   description: Asset search.
   humanURL: https://apidocs.cloudhealthtech.com/
+  baseURL: https://chapi.cloudhealthtech.com
   tags:
   - Search
   properties:
@@ -123,11 +143,14 @@ apis:
   - type: Documentation
     url: https://apidocs.cloudhealthtech.com/
   - type: Authentication
-    url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
+    url: https://apidocs.cloudhealthtech.com/#documentation_getting-your-api-key
+  - type: Overlay
+    url: overlays/cloudhealth-search-overlay.yaml
 - aid: cloudhealth:cloudhealth-sso-api
   name: CloudHealth SSO API
   description: Single sign-on configuration.
   humanURL: https://apidocs.cloudhealthtech.com/
+  baseURL: https://chapi.cloudhealthtech.com
   tags:
   - SSO
   properties:
@@ -136,15 +159,17 @@ apis:
   - type: Documentation
     url: https://apidocs.cloudhealthtech.com/
   - type: Authentication
-    url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
+    url: https://apidocs.cloudhealthtech.com/#documentation_getting-your-api-key
+  - type: Overlay
+    url: overlays/cloudhealth-sso-overlay.yaml
 - aid: cloudhealth:cloudhealth-platform-api
   name: CloudHealth Platform API
-  humanURL: https://apidocs.cloudhealthtech.com/
-  baseURL: https://chapi.cloudhealthtech.com
   description: The CloudHealth Platform REST API programmatically retrieves and manages data from the CloudHealth
     Platform — AWS/Azure/GCP accounts, assets, perspectives, billing rules, metrics, OLAP reports, policies, tagging,
     SSO, and organization/partner administration. Resource-oriented URLs, JSON responses, standard HTTP status codes,
     and per-user API Key authentication.
+  humanURL: https://apidocs.cloudhealthtech.com/
+  baseURL: https://chapi.cloudhealthtech.com
   tags:
   - FinOps
   - Cloud Cost Management
@@ -154,14 +179,16 @@ apis:
     type: Documentation
   - url: https://apidocs.cloudhealthtech.com/
     type: APIReference
-  - url: authentication/cloudhealth-technologies-authentication.yml
+  - url: authentication/cloudhealth-authentication.yml
     type: Authentication
-  - url: conventions/cloudhealth-technologies-conventions.yml
+  - url: conventions/cloudhealth-conventions.yml
     type: Conventions
-  - url: errors/cloudhealth-technologies-problem-types.yml
+  - url: errors/cloudhealth-problem-types.yml
     type: ErrorCatalog
-  - url: lifecycle/cloudhealth-technologies-lifecycle.yml
+  - url: lifecycle/cloudhealth-lifecycle.yml
     type: Lifecycle
+  - url: rate-limits/cloudhealth-rate-limits.yml
+    type: RateLimits
 common:
 - type: ParentCompany
   url: https://apis.io/providers/vmware/
@@ -180,13 +207,13 @@ common:
 - type: LinkedIn
   url: https://www.linkedin.com/company/cloudhealthtech
 - type: Website
-  url: https://www.vmware.com/products/cloud-infrastructure/tanzu-cloudhealth
+  url: https://www.broadcom.com/products/software/finops/cloudhealth
 - type: Documentation
   url: https://apidocs.cloudhealthtech.com/
 - type: Product Documentation
-  url: https://techdocs.broadcom.com/us/en/vmware-tanzu/cloudhealth/tanzu-cloudhealth/saas/tnz-cloudhealth/index.html
+  url: https://techdocs.broadcom.com/us/en/ca-enterprise-software/it-operations-management/cloudhealth/saas/index.html
 - type: Authentication
-  url: https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests
+  url: https://apidocs.cloudhealthtech.com/#documentation_getting-your-api-key
 - type: PrivacyPolicy
   url: https://www.broadcom.com/company/legal/privacy/policy
 - type: JSONLD
@@ -195,6 +222,42 @@ common:
   url: rules/cloudhealth-rules.yml
 - type: Blog
   url: https://blogs.vmware.com/feed/
+- type: APIReference
+  url: https://apidocs.cloudhealthtech.com/
+- type: Documentation
+  url: https://help.cloudhealthtech.com/graphql-api/
+- type: Login
+  url: https://apps.cloudhealthtech.com/login
+- type: Support
+  url: https://support.broadcom.com/
+- type: TermsOfService
+  url: https://www.broadcom.com/company/legal/terms-of-use
+- type: Pricing
+  url: https://aws.amazon.com/marketplace/pp/prodview-btyciyjmdewhm
+- type: WellKnown
+  url: well-known/cloudhealth-well-known.yml
+- type: MCPServer
+  url: mcp/cloudhealth-mcp.yml
+- type: OAuthScopes
+  url: scopes/cloudhealth-scopes.yml
+- type: Conventions
+  url: conventions/cloudhealth-conventions.yml
+- type: ErrorCatalog
+  url: errors/cloudhealth-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/cloudhealth-lifecycle.yml
+- type: RateLimits
+  url: rate-limits/cloudhealth-rate-limits.yml
+- type: Plans
+  url: plans/cloudhealth-plans-pricing.yml
+- type: Packages
+  url: packages/cloudhealth-packages.yml
+- type: Conformance
+  url: conformance/cloudhealth-conformance.yml
+- type: LLMsTxt
+  url: llms/cloudhealth-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -202,3 +265,8 @@ specificationVersion: '0.23'
 x-parent: vmware
 x-relationship: acquisition
 x-acquired: 2018
+x-enrichment:
+  date: '2026-09-16'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v3
