@@ -77,6 +77,10 @@ apis:
   baseURL: https://chapi.cloudhealthtech.com
   tags:
   - MSP
+  - Partners
+  - Provisioning
+  tags_raw:
+  - MSP
   - Partner
   - Provisioning
   properties:

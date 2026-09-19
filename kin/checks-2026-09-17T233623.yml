@@ -2,19 +2,18 @@
 kin_checks:
   slug: cloudhealth
   schema_version: 0.22.0
-  scored_at: '2026-09-15'
-  run_ts: 2026-09-15T230249
-  note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.22.0.yml; counts below let you verify that.
+  scored_at: '2026-09-17'
+  run_ts: 2026-09-17T233623
+  note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
+    apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
+    below let you verify that.
   counts:
     total: 136
-    earned: 37
-    partial: 10
-    missed: 63
-    na: 26
+    earned: 53
+    partial: 9
+    missed: 51
+    na: 23
   checks:
-  - id: base_url_per_api
-    status: missed
   - id: well_known_published
     status: missed
   - id: llms_txt_published
@@ -40,6 +39,8 @@ kin_checks:
     detail: 0 of 5 openapi documents pass
   - id: asyncapi_present
     status: missed
+  - id: graphql_type_depth
+    status: missed
   - id: json_schema_present
     status: missed
   - id: json_schema_per_resource
@@ -53,8 +54,6 @@ kin_checks:
   - id: balanced_severities
     status: missed
   - id: vocabulary_published
-    status: missed
-  - id: conformance_declared
     status: missed
   - id: overlay_published
     status: missed
@@ -86,25 +85,11 @@ kin_checks:
     status: missed
   - id: postman_present
     status: missed
-  - id: agent_skill_present
-    status: missed
-  - id: support_channel
-    status: missed
-  - id: pricing_link
-    status: missed
-  - id: sign_up_present
-    status: missed
-  - id: terms_of_service
-    status: missed
   - id: compliance_published
     status: missed
   - id: trust_center
     status: missed
-  - id: reg_oauth_scopes
-    status: missed
   - id: reg_vulnerability_disclosure
-    status: missed
-  - id: reg_terms_of_service
     status: missed
   - id: reg_compliance_published
     status: missed
@@ -118,15 +103,11 @@ kin_checks:
     status: missed
   - id: reversibility_documented
     status: missed
-  - id: mcp_server
-    status: missed
   - id: idempotency
     status: missed
   - id: openapi_examples
     status: missed
   - id: event_surface_described
-    status: missed
-  - id: agent_skills
     status: missed
   - id: well_known_catalog
     status: missed
@@ -136,20 +117,10 @@ kin_checks:
     status: missed
   - id: dry_run_mode
     status: missed
-  - id: delegated_identity
-    status: missed
-  - id: protected_resource_metadata
-    status: missed
   - id: dynamic_client_registration
     status: missed
   - id: agentic_commerce
     status: missed
-  - id: rate_limits_documented
-    status: partial
-    earned: 2.0
-  - id: rate_limits_rich
-    status: partial
-    earned: 1.0
   - id: github_org_present
     status: partial
     earned: 1.0
@@ -158,20 +129,21 @@ kin_checks:
     status: partial
     earned: 2.5
     detail: pointer liveness 0.5
-  - id: plans_present
+  - id: agent_skill_present
     status: partial
-    earned: 2.0
-  - id: plans_multiple
-    status: partial
-    earned: 1.0
+    earned: 0.75
   - id: agentic_access
     status: partial
     earned: 2.5
     detail: 'authorship: derived'
+  - id: mcp_server
+    status: partial
+    earned: 4.8
+    detail: 'grade: documented'
   - id: auth_clarity
     status: partial
-    earned: 3.5
-    detail: 'grade: bearer'
+    earned: 9.0
+    detail: 'grade: served'
   - id: error_semantics
     status: partial
     earned: 4.0
@@ -180,3 +152,31 @@ kin_checks:
     status: partial
     earned: 3.5
     detail: 'grade: documented'
+  - id: agent_skills
+    status: partial
+    earned: 1.25
+    detail: 'authorship: derived'
+  na:
+  - asyncapi_3_x
+  - channels_defined
+  - contract_self_operated
+  - fhir_capability_statement
+  - fhir_resource_coverage
+  - inbound_contract_published
+  - messages_with_schema
+  - os_code_of_conduct
+  - os_contribution_guide
+  - os_releases
+  - os_security_policy
+  - reg_camara_conformance
+  - reg_certification_signal
+  - reg_consent_model
+  - reg_entitlement_terms
+  - reg_fapi_profile
+  - reg_mandate_verified
+  - reg_named_standard_conformance
+  - reg_pci_sca
+  - reg_smart_configuration
+  - reg_write_surface
+  - security_schemes
+  - server_bindings
