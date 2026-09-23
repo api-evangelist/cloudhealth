@@ -1,0 +1,11 @@
+generated: '2026-09-16'
+method: generated
+note: No provider-published agent skills or AGENTS.md were found; these are API Evangelist-authored and grounded in
+  operationIds that exist in the openapi/ files.
+skills:
+  - file: skills/cloudhealth-cost-history-report.md
+    name: cloudhealth-cost-history-report
+    operations: [costHistoryReport, listPerspectives, listAwsAccounts]
+  - file: skills/cloudhealth-enable-aws-account.md
+    name: cloudhealth-enable-aws-account
+    operations: [enableAwsAccount, getAwsAccount, updateAwsAccount, listAwsAccounts, deleteAwsAccount]

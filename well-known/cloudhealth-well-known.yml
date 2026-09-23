@@ -1,0 +1,336 @@
+generated: '2026-09-16'
+method: probed
+source: live GET of the closed well-known path list on every host the record knows, plus the authorization server
+  named by oauth-protected-resource
+hit_count: 6
+summary: apps.cloudhealthtech.com and chapi.cloudhealthtech.com each serve RFC 8414 authorization-server metadata,
+  OIDC discovery and RFC 9728 protected-resource metadata (resource https://apps.cloudhealthtech.com/mcp). No security.txt,
+  api-catalog, ai-plugin, apis.json, ucp/acp or AAuth document on any host.
+hosts:
+- host: cloudhealthtech.com
+  documents:
+  - path: /.well-known/security.txt
+    status: null
+    error: ERR URLError
+  - path: /.well-known/openid-configuration
+    status: null
+    error: ERR URLError
+  - path: /.well-known/oauth-authorization-server
+    status: null
+    error: ERR URLError
+  - path: /.well-known/oauth-protected-resource
+    status: null
+    error: ERR URLError
+  - path: /.well-known/api-catalog
+    status: null
+    error: ERR URLError
+  - path: /.well-known/api-catalog.json
+    status: null
+    error: ERR URLError
+  - path: /.well-known/ai-plugin.json
+    status: null
+    error: ERR URLError
+  - path: /.well-known/ucp.json
+    status: null
+    error: ERR URLError
+  - path: /.well-known/acp.json
+    status: null
+    error: ERR URLError
+  - path: /.well-known/aauth-resource.json
+    status: null
+    error: ERR URLError
+  - path: /.well-known/apis.json
+    status: null
+    error: ERR URLError
+  - path: /apis.json
+    status: null
+    error: ERR URLError
+  - path: /apis.yml
+    status: null
+    error: ERR URLError
+  path_echo_control: not-run (host unreachable)
+  note: Apex domain did not answer HTTPS (connection error).
+- host: www.cloudhealthtech.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/openid-configuration
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/oauth-protected-resource
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/api-catalog
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/api-catalog.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/ai-plugin.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/ucp.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/acp.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/aauth-resource.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/apis.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /apis.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /apis.yml
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  note: "Every path (including the negative control) 301-redirects to https://www.broadcom.com/products/software/finops/cloudhealth\
+    \ and returns that HTML marketing page \u2014 a catch-all, recorded as misses."
+  soft_404_control:
+    path: /.well-known/cloudhealth-negative-control-7f3ab91c.json
+    status: 301
+    final_status: 200
+    bytes: 48247
+- host: chapi.cloudhealthtech.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: cloudhealth-openid-configuration.json
+    content_type: application/json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: cloudhealth-oauth-authorization-server.json
+    content_type: application/json
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: cloudhealth-oauth-protected-resource.json
+    content_type: application/json
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/api-catalog.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  path_echo_control: passed
+  note: REST API host. Serves the same OAuth/OIDC metadata as apps.cloudhealthtech.com (byte-identical); negative
+    control 404 (no path echo).
+- host: apidocs.cloudhealthtech.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/api-catalog.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  path_echo_control: passed
+- host: apps.cloudhealthtech.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 500
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: cloudhealth-openid-configuration.json
+    content_type: application/json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: cloudhealth-oauth-authorization-server.json
+    content_type: application/json
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: cloudhealth-oauth-protected-resource.json
+    content_type: application/json
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/api-catalog.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 500
+  path_echo_control: passed
+  note: Platform / GraphQL / MCP host and the OAuth authorization server named in authorization_servers. Negative
+    control 404 (no path echo).
+- host: help.cloudhealthtech.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/api-catalog.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  path_echo_control: passed
+- host: cloudhealth.vmware.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/openid-configuration
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/oauth-protected-resource
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/api-catalog
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/api-catalog.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/ai-plugin.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/ucp.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/acp.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/aauth-resource.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /.well-known/apis.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /apis.json
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  - path: /apis.yml
+    status: 301
+    note: "301 redirect chain ending at the HTML page https://www.broadcom.com/products/software/finops/cloudhealth\
+      \ (200 text/html) \u2014 catch-all, not a document"
+  note: "Every path (including the negative control) redirects to https://www.broadcom.com/products/software/finops/cloudhealth\
+    \ (HTML) \u2014 a catch-all, recorded as misses."
+  soft_404_control:
+    path: /.well-known/cloudhealth-negative-control-7f3ab91c.json
+    status: 301
+    final_status: 200
+    bytes: 48247
+- host: www.vmware.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 400
+  - path: /.well-known/openid-configuration
+    status: 400
+  - path: /.well-known/oauth-authorization-server
+    status: 400
+  - path: /.well-known/oauth-protected-resource
+    status: 400
+  - path: /.well-known/api-catalog
+    status: 400
+  - path: /.well-known/api-catalog.json
+    status: 400
+  - path: /.well-known/ai-plugin.json
+    status: 400
+  - path: /.well-known/ucp.json
+    status: 400
+  - path: /.well-known/acp.json
+    status: 400
+  - path: /.well-known/aauth-resource.json
+    status: 400
+  - path: /.well-known/apis.json
+    status: 400
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  path_echo_control: passed
+  note: Every /.well-known/ path returns 400 (S3 IncorrectEndpoint).

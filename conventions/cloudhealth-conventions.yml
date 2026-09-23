@@ -1,0 +1,102 @@
+generated: '2026-09-16'
+method: searched
+source: https://apidocs.cloudhealthtech.com/
+docs:
+  - https://apidocs.cloudhealthtech.com/#documentation_how-to-use-the-cloudhealth-api
+  - https://help.cloudhealthtech.com/graphql-api/
+related:
+  authentication: authentication/cloudhealth-authentication.yml
+  errors: errors/cloudhealth-problem-types.yml
+  lifecycle: lifecycle/cloudhealth-lifecycle.yml
+  rate_limits: rate-limits/cloudhealth-rate-limits.yml
+  scopes: scopes/cloudhealth-scopes.yml
+surfaces:
+  rest: https://chapi.cloudhealthtech.com
+  graphql: https://apps.cloudhealthtech.com/graphql
+  mcp: https://apps.cloudhealthtech.com/mcp
+authentication:
+  style: >-
+    REST — per-user API key as "Authorization: Bearer <api_key>" or ?api_key=. GraphQL — exchange the
+    API key via the loginAPI mutation for a 15-minute access token + 9-hour refresh token. MCP — OAuth 2.0.
+  detail: authentication/cloudhealth-authentication.yml
+request_format:
+  required_headers:
+    - 'Authorization: Bearer <api_key>'
+    - 'Accept: application/json (or Content-Type: application/json)'
+  json_body_content_type: Content-Type application/json is required on PUT/POST with a JSON body, otherwise
+    HTTP 422 Unprocessable Entity.
+  compression: optional Accept-Encoding gzip
+  max_uri_length: 4000 characters
+  responses: All REST responses, including errors, are JSON.
+  evidence: https://apidocs.cloudhealthtech.com/#documentation_how-to-use-the-cloudhealth-api
+multi_tenancy:
+  org_scoping: Most REST endpoints accept org_id to run the query in a specific organization (defaults to the
+    user's default organization); FlexOrg sub-organizations need their own GraphQL token.
+  partner_scoping: Partner endpoints accept client_api_id to act on a customer tenant.
+idempotency:
+  coverage: none
+  supported: false
+  mechanism: null
+  scope: []
+  note: No idempotency key, header or replay-protection mechanism is documented for the REST or GraphQL APIs
+    (searched apidocs.cloudhealthtech.com and help.cloudhealthtech.com/graphql-api/, 2026-09-16). Perspective
+    updates accept check_version (the schema version to update) — optimistic concurrency, not replay protection.
+concurrency:
+  mechanism: check_version query parameter on Update Perspective Schema
+  evidence: https://apidocs.cloudhealthtech.com/#perspectives_update-perspective-schema
+pagination:
+  style: page-number
+  params: [page, per_page]
+  defaults:
+    - endpoint: GET /v1/aws_accounts (and most v1 list endpoints)
+      per_page_default: 30
+      per_page_max: 100
+    - endpoint: GET /api/search (api_version=2 only)
+      page_default: 1
+      per_page_default: 100
+      per_page_max: 1000
+      note: If page is omitted the query returns all results, even when per_page is given.
+  graphql: Connection-style queries (see help.cloudhealthtech.com/graphql-api/ "Add filter with pagination").
+  evidence: https://apidocs.cloudhealthtech.com/#documentation_how-to-use-the-cloudhealth-api
+sparse_fields:
+  supported: true
+  param: fields
+  note: Asset search (GET /api/search, api_version=2) takes a comma-separated fields list and a query filter.
+versioning:
+  scheme: uri-path plus per-endpoint api_version parameter
+  observed: [/v1/, /v2/ (organizations), unversioned /olap_reports and /api/search]
+  detail: lifecycle/cloudhealth-lifecycle.yml
+request_tracing:
+  header: x-request-id
+  note: Observed on a live 403 response from https://chapi.cloudhealthtech.com/v1/aws_accounts (2026-09-16); not documented.
+error_envelope:
+  rest: '{"error": "error message here"}'
+  graphql: standard GraphQL errors[] array
+  problem_details: false
+  detail: errors/cloudhealth-problem-types.yml
+rate_limit_signaling:
+  status: 429
+  headers: none documented
+  detail: rate-limits/cloudhealth-rate-limits.yml
+reversibility:
+  write_surface: true
+  surfaces:
+    - operation: DELETE /v1/perspective_schemas/{perspective_id}
+      reversal: restore archived perspective (soft delete, the default; also force=true)
+      reversal_operation: null
+      window: null
+      grade: documented
+      note: Soft and force deletes archive the Perspective and "You can restore the deleted Perspective";
+        hard_delete=true is irreversible. No restore endpoint or restoration window is documented in the API guide.
+      docs: https://apidocs.cloudhealthtech.com/#perspectives_delete-perspective-schema
+    - operation: DELETE /v1/aws_accounts/{id}
+      reversal: null
+      window: null
+      grade: none
+      note: No reversal documented; the account can only be re-enabled with POST /v1/aws_accounts.
+      docs: https://apidocs.cloudhealthtech.com/
+  overall: documented
+dry_run:
+  supported: false
+  note: No dry-run / validate-only mode documented. Savings Plan simulations (GraphQL savingsPlanSimulation) are
+    modelling queries, not a dry-run of a write.

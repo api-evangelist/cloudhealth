@@ -1,0 +1,39 @@
+generated: '2026-09-16'
+method: searched
+source: https://apidocs.cloudhealthtech.com/#documentation_error-codes
+format: custom-json
+envelope: '{"error": "error message here"}'
+note: CloudHealth uses conventional HTTP status codes; all REST errors return JSON with a single "error" string.
+  Not RFC 9457 (no application/problem+json). The GraphQL guide adds per-feature error-message tables (e.g.
+  Cost Reallocation API Error Handling at https://help.cloudhealthtech.com/graphql-api/).
+problems:
+  - status: 400
+    title: Bad Request
+    description: Header missing
+  - status: 401
+    title: Unauthorized
+    description: Currently logged out
+  - status: 403
+    title: Forbidden
+    description: Bad API Key
+    remediation: Check the API key; generating a new key in My Profile invalidates the previous one.
+  - status: 404
+    title: Not Found
+    description: Bad endpoint
+  - status: 408
+    title: Request Timeout
+    description: Exceeding read timeout
+  - status: 422
+    title: Unprocessable Entity
+    description: Input format error
+    remediation: Send Content-Type application/json when PUTting or POSTing JSON.
+  - status: 429
+    title: Too many requests
+    description: Exceeding post rate limit
+    remediation: Retry with exponential backoff (Metrics API guidance); see rate-limits/cloudhealth-rate-limits.yml.
+  - status: 500
+    title: Internal Service Error
+    description: General error
+  - status: 503
+    title: Service not available
+    description: Back end capped out

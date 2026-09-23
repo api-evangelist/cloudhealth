@@ -4,100 +4,54 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: CloudHealth
 providerId: cloudhealth
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Cloud Cost
-  - Cloud Governance
-  - Cloud Management
-  - Cost Optimization
-  - FinOps
-  - Multi-Cloud
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the CloudHealth API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+modified: '2026-09-16'
+generated: '2026-09-16'
+method: searched
+source: https://knowledge.broadcom.com/external/article/420604/cloudhealth-rest-and-graphql-api-rate-li.html
+docs:
+  - https://knowledge.broadcom.com/external/article/420604/cloudhealth-rest-and-graphql-api-rate-li.html
+  - https://apidocs.cloudhealthtech.com/
+note: >-
+  Replaces a 2026-05-04 bulk-sweep scaffold whose tiered quotas and X-RateLimit-* headers were placeholders.
+  Values below are the provider's published limits. No rate-limit response headers are documented and none
+  were observed on unauthenticated responses from chapi.cloudhealthtech.com (2026-09-16).
+limit_count: 4
+headers: {}
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - CloudHealth REST API
-      - CloudHealth GraphQL API
-      - CloudHealth Partner API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - CloudHealth REST API
-      - CloudHealth GraphQL API
-      - CloudHealth Partner API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - CloudHealth REST API
-      - CloudHealth GraphQL API
-      - CloudHealth Partner API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - CloudHealth REST API
-      - CloudHealth GraphQL API
-      - CloudHealth Partner API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - CloudHealth REST API
-      - CloudHealth GraphQL API
-      - CloudHealth Partner API
+  - name: REST API client limit
+    applies: [CloudHealth REST API (https://chapi.cloudhealthtech.com)]
+    scope: per-client
+    limit: 30
+    window: 1 minute
+    source: https://knowledge.broadcom.com/external/article/420604/cloudhealth-rest-and-graphql-api-rate-li.html
+  - name: GraphQL API client limit
+    applies: [CloudHealth GraphQL API (https://apps.cloudhealthtech.com/graphql)]
+    scope: per-client
+    limit: 60
+    window: 1 minute
+    source: https://knowledge.broadcom.com/external/article/420604/cloudhealth-rest-and-graphql-api-rate-li.html
+  - name: Metrics API POST limit
+    applies: [POST metrics upload]
+    scope: per-api-key (user)
+    limit: 60
+    window: 1 minute
+    method: POST
+    note: Read requests are not throttled. A payload can hold up to 1000 data points, so a client can push
+      60,000 data points per minute. On 429, retry with exponential backoff.
+    source: https://apidocs.cloudhealthtech.com/
+  - name: Organization API write limit
+    applies: [Create Organization, Assign Account to Organization, Replace Existing Organization Account Assignment]
+    scope: per-api-key (user)
+    limit: 500
+    window: 10 minutes
+    source: https://apidocs.cloudhealthtech.com/
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Backoff
+    description: The Metrics API guide says the client should handle a 429 and retry with exponential backoff; the
+      Broadcom KB advises adding a delay to any polling automation.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

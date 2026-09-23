@@ -1,0 +1,405 @@
+# CloudHealth GraphQL API — ANONYMOUS (pre-authentication) introspection schema
+# method: probed
+# source: POST https://apps.cloudhealthtech.com/graphql (standard IntrospectionQuery, no Authorization header) -> HTTP 200, fetched 2026-09-16
+# This is ONLY the public, pre-login slice of the schema (token exchange: login, loginAPI, loginCspService,
+# loginCspUser, refresh, plus shared input types). The full query/mutation surface (FlexReports, Budgets,
+# FlexOrgs, Savings Plans, Cost Reallocation, ...) is only visible after sending "Authorization: Bearer <access token>"
+# per https://help.cloudhealthtech.com/graphql-api/#authentication — it was NOT introspected and is not reproduced here.
+# Printed verbatim from the introspection result with graphql-core print_schema.
+
+directive @mcpTool(name: String, additionalDescription: String, directive: String, scope: TenantScope = ALL) on FIELD_DEFINITION | OBJECT
+
+type Query {
+  """Echoes back the CSP token provided."""
+  cspToken(cspToken: String): String
+}
+
+"""Log in and otherwise get authentication tokens."""
+type Mutation {
+  """Remove a recipient email from a subscription using a signed token."""
+  unsubscribeRecipient(token: String!): Boolean!
+
+  """Log in, getting a new token pair"""
+  login(user: String!, password: String!): LoginPayload
+
+  """Get a token pair given an API key"""
+  loginAPI(apiKey: String!): LoginPayload
+
+  """
+  Maps CSP service account token into the pair of CHAPI and accessToken for graphQL API
+  """
+  loginCspService(cspToken: String!): ApiTokens
+
+  """
+  Exchanges User's CSP access token for NG accessToken using the information in the User's CSP access token and CSP ProjectId
+  """
+  loginCspUser(cspToken: String!, projectId: String!): ApiTokens
+
+  """Get a new token pair given a refresh token"""
+  refresh(token: String!): TokenPair
+}
+
+enum TenantScope {
+  DIRECT
+  PARTNER
+  ALL
+}
+
+"""An object with an ID"""
+interface Node {
+  id: ID!
+}
+
+"""
+Scalar for date in ISO-8601 format, maps to 1996-12-19 [RFC-3339 compliant]
+"""
+scalar Date
+
+"""
+Scalar for Time with zone  in ISO-8601 format, maps to 16:39:57-08:00 [RFC-3339 compliant]
+"""
+scalar Time
+
+"""A CloudHealth resource name: the name of an object in the system."""
+scalar CRN
+
+scalar DateTime
+
+"""SubscriptionQuery Input"""
+input SubscriptionQueryInput {
+  """Query via Subscription Name."""
+  name: String
+
+  """Query via target. For FlexReport, its a FlexReport's CRN."""
+  target: CRN
+
+  """Type of the subscription, should be registered already"""
+  type: String
+}
+
+"""Subscription Input"""
+input SubscriptionInput {
+  """Name of the Subscription."""
+  name: String!
+
+  """Define the schedule"""
+  schedule: SubscriptionSchedulePeriodInput!
+
+  """Entity for which the schedule had to be created"""
+  target: CRN!
+
+  """Subscribers"""
+  recipients: RecipientsInput
+
+  """Date from which to start this schedule. E.g: 2020-01-31"""
+  startDate: Date!
+
+  """Date after which to mark this scedule as inactive. E.g: 2021-01-01"""
+  endDate: Date
+
+  """Additional Content for Target to Run Subscription"""
+  targetContent: JSON
+}
+
+input SubscriptionSchedulePeriodInput {
+  """Granularity denoting how often the Schedule is set."""
+  scheduleFrequency: ScheduleFrequency!
+
+  """
+  Time of Day with Timezone denoting when to run the Schedule
+  ISO Timestamp with Timezone, eg: 16:39:57-08:00
+  """
+  executionTimeOfDay: Time!
+
+  """
+  A unique list of numbers that represent when to run the schedule
+  List of numbers between 1 to 7 denoting the Day of Week for WEEKLY Granularity starting MON(1)
+  List of numbers between -1 to 31 denoting the Day of Month for MONTHLY Granularity, -1 refers to Last Day of Month
+  """
+  executionDays: [Int]
+}
+
+input RecipientsInput {
+  """
+  Input email.
+  
+  This field is deprecated and will be removed on after 2023-11-01.  Use a
+  `userRecipient` field with an `email` sub-field instead.
+  """
+  email: [String]
+
+  """userRecipient for both CH user and non-CH user"""
+  userRecipients: [UserRecipientInput!]
+
+  """Customer s3 bucket details"""
+  s3Destination: S3DestinationInput
+}
+
+input UserRecipientInput {
+  """ID of user in platform, e.g. crn:1:user/64176"""
+  userId: ID
+
+  """Input email"""
+  email: String
+}
+
+input S3DestinationInput {
+  """Customer s3 bucket name to which output is to be delivered"""
+  s3Bucket: String!
+
+  """CloudHealth Account ID of customer AWS account configured"""
+  accountId: String!
+}
+
+type Recipients {
+  email: [String] @deprecated(reason: "Use `email of userRecipient` instead.  Will be removed on or after 2023-11-01.")
+
+  """userRecipients for both CloudHealth user and non-CloudHealth user"""
+  userRecipients: [UserRecipient]
+
+  """Customer s3 bucket details"""
+  s3Destination: S3Destination
+}
+
+type UserRecipient {
+  """ID of user in platform"""
+  userId: ID
+
+  """Input email"""
+  email: String
+}
+
+type S3Destination {
+  """Customer s3 bucket name to which output is to be delivered"""
+  s3Bucket: String!
+
+  """CloudHealth Account ID of customer AWS account configured"""
+  accountId: String!
+}
+
+type SubscriptionSchedulePeriod {
+  """Granularity denoting how often the Schedule is set."""
+  scheduleFrequency: ScheduleFrequency!
+
+  """
+  Time of Day with Timezone denoting when to run the Schedule
+  ISO Timestamp with Timezone, eg: 16:39:57-08:00
+  (String Type instead of DateTime?)
+  """
+  executionTimeOfDay: Time!
+
+  """
+  A unique list of numbers that represent when to run the schedule
+  List of numbers between 1 to 7 denoting the Day of Week for WEEKLY Granularity starting MON(1)
+  List of numbers between -1 to 31 denoting the Day of Month for MONTHLY Granularity, -1 refers to Last Day of Month
+  """
+  executionDays: [Int]
+}
+
+enum ScheduleFrequency {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+type SubscriptionMetadata {
+  """Type of the subscription"""
+  type: String
+
+  """
+  Redirect URL for the targets of queried subscription type in a parametrized form.
+  
+  /ui/reports/flexreports/edit/{target}
+  ||
+  https://apps.cloudhealthtech.com/ui/reports/flexreports/edit/<reportId>
+  """
+  uri: String
+}
+
+type CHSubscription implements Node {
+  """ID of the Subscription"""
+  id: ID!
+
+  """Name of the Subscription."""
+  name: String!
+
+  """Schedule Definition"""
+  schedule: SubscriptionSchedulePeriod!
+
+  """Id of the entity under subscription."""
+  target: CRN!
+
+  """Subscribers"""
+  recipients: Recipients
+
+  """Is the schedule active"""
+  status: SubscriptionStatus!
+
+  """Date from which to start this schedule, E.g. 2020-01-31"""
+  startDate: Date!
+
+  """Date after which to mark this scedule as inactive, E.g: 2021-01-31"""
+  endDate: Date
+
+  """User's crn who created the subscription"""
+  createdBy: String!
+
+  """Subscription initial Creation timestamp"""
+  createdOn: DateTime
+
+  """User's crn who last updated the subscription"""
+  lastUpdatedBy: String
+
+  """Subscription last Modified timestamp"""
+  lastUpdatedOn: DateTime
+
+  """Next time instant when the schedule is supposed to be delivered"""
+  lastScheduledOn: DateTime
+
+  """Last time when this schedule was successfully delivered"""
+  nextSchedule: DateTime
+
+  """
+  Time instant reported by the consumer for the last invocation in the callback.
+  If time is not specified in callback, then we will take the time at which the callback was recieved by subscription service.
+  In case of no callback, this field will be null.
+  """
+  lastCompletedOn: DateTime
+
+  """Status of the last invocation of the schedule"""
+  lastInvocationResult: InvocationResult
+
+  """Type of the subscription"""
+  type: String!
+
+  """CRN of the Organization"""
+  organizationCRN: CRN!
+
+  """Additional Content for Target to Run Subscription"""
+  targetContent: JSON
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum InvocationResult {
+  SUCCESS
+  FAILED
+  NOT_REPORTED
+  S3_WRITE_FAILED
+}
+
+scalar JSON
+
+"""An ISO 8601-encoded datetime"""
+scalar ISO8601DateTime
+
+enum ExperienceMode {
+  CLASSIC
+  ENTERPRISE
+}
+
+"""
+Input to the `getAccessToken` mutation.
+Only one of organization, organizationUnit, or customer are expected
+"""
+input GetAccessTokenInput {
+  """Optional caller-provided correlation ID."""
+  clientMutationId: String
+
+  """A valid refresh token for the calling user."""
+  refreshToken: String!
+
+  """
+  The organization the calling user would like a token for. If omitted,
+  use the default organization for the user.
+  """
+  organization: CRN
+
+  """
+  The organization unit the calling user would like a token for. If omitted,
+  use the default organization unit for the user if the user is using
+  organization units instead of classic organizations.
+  """
+  organizationUnit: CRN
+  experienceMode: ExperienceMode
+
+  """
+  The role the calling user would like a token for.  If omitted, use the
+  default role for the user.
+  """
+  role: CRN
+
+  """
+  The customer the call user would like a token for. If provided, any
+  organization or role is ignored
+  Customer CRN can be of type tenant or msp_client
+  """
+  customer: CRN
+
+  """
+  An optional string reason for getting a new access token. Required
+  only for customer-switching
+  """
+  justification: String
+}
+
+"""The result of the `getAccessToken` mutation."""
+type GetAccessTokenPayload {
+  """An access token for the requested organization and role."""
+  accessToken: String!
+
+  """Optional caller-provided correlation ID."""
+  clientMutationId: String
+
+  """The original refresh token, with an updated expiration time."""
+  refreshToken: String!
+}
+
+type LoginPayload {
+  accessToken: String!
+  access_token: String! @deprecated(reason: "use accessToken")
+  idToken: String!
+  refreshToken: String!
+  refresh_token: String! @deprecated(reason: "use refreshToken")
+}
+
+type ApiTokens {
+  """CHAPI API key"""
+  chapiKey: String
+
+  """Access Token for graphQL APIs"""
+  accessToken: String
+
+  """Expiration Date/Time for Access token"""
+  accessTokenExpiration: ISO8601DateTime
+}
+
+"""Access and refresh tokens for CHT services"""
+type TokenPair {
+  accessToken: String!
+  access_token: String! @deprecated(reason: "use accessToken")
+  refreshToken: String!
+  refresh_token: String! @deprecated(reason: "use refreshToken")
+}
+
+type McpToolArg {
+  name: String!
+  description: String
+  type: String!
+  defaultValue: String
+  isRequired: Boolean!
+}
+
+type McpTool {
+  fieldName: String!
+  toolName: String!
+  operationType: String!
+  description: String
+  directive: String
+  scope: TenantScope!
+  args: [McpToolArg!]!
+  returnType: String!
+}

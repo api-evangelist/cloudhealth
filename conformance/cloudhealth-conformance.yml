@@ -1,0 +1,47 @@
+generated: '2026-09-16'
+method: searched
+source: live discovery documents + https://apidocs.cloudhealthtech.com/
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: https://apps.cloudhealthtech.com/.well-known/oauth-authorization-server (authorization_code, refresh_token, client_credentials) — MCP surface only
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: true
+    evidence: https://apps.cloudhealthtech.com/.well-known/oauth-authorization-server (HTTP 200)
+  - id: rfc9728-oauth-protected-resource-metadata
+    conforms: true
+    evidence: https://apps.cloudhealthtech.com/.well-known/oauth-protected-resource (HTTP 200) + WWW-Authenticate resource_metadata on 401 from /mcp
+  - id: rfc7636-pkce
+    conforms: true
+    evidence: code_challenge_methods_supported [S256]
+  - id: rfc7591-dynamic-client-registration
+    conforms: true
+    evidence: registration_endpoint https://apps.cloudhealthtech.com/oauth2/register
+  - id: rfc7009-token-revocation
+    conforms: true
+    evidence: revocation_endpoint https://apps.cloudhealthtech.com/oauth2/revoke
+  - id: oidc-discovery
+    conforms: true
+    evidence: https://apps.cloudhealthtech.com/.well-known/openid-configuration (HTTP 200, id_token RS256)
+  - id: mcp-authorization
+    conforms: true
+    evidence: MCP endpoint returns 401 with RFC 9728 resource_metadata; client_id_metadata_document_supported true
+  - id: graphql
+    conforms: true
+    evidence: https://apps.cloudhealthtech.com/graphql answers the standard introspection query (anonymous slice)
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: 'REST errors return {"error": "..."} (https://apidocs.cloudhealthtech.com/#documentation_error-codes)'
+  - id: idempotency-key
+    conforms: false
+    evidence: no idempotency mechanism documented
+  - id: pagination
+    conforms: true
+    evidence: page / per_page parameters (page-number pagination)
+  - id: scim
+    conforms: false
+  - id: focus-finops-open-cost-usage-spec
+    conforms: false
+    evidence: No FOCUS-shaped dataset or export is declared in the REST guide or the anonymous GraphQL schema; not
+      asserted. (The authenticated GraphQL schema was not inspected.)
+domain_standards: []

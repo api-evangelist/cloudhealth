@@ -1,0 +1,47 @@
+generated: '2026-09-16'
+method: probed
+status: published
+source: https://chapi.cloudhealthtech.com/mcp
+deployment:
+  mode: remote
+  endpoint: https://apps.cloudhealthtech.com/mcp
+  install: null
+  package: null
+  auth: oauth
+  verified: probed
+server:
+  name: cloudhealth
+  transport: http
+  url: https://apps.cloudhealthtech.com/mcp
+x-evidence:
+  - url: https://chapi.cloudhealthtech.com/mcp
+    request: POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}
+    http_status: 401
+    www_authenticate: Bearer resource_metadata="https://apps.cloudhealthtech.com/.well-known/oauth-protected-resource"
+    fetched: '2026-09-16'
+  - url: https://apps.cloudhealthtech.com/mcp
+    http_status: 401
+    fetched: '2026-09-16'
+  - url: https://apps.cloudhealthtech.com/.well-known/oauth-protected-resource
+    http_status: 200
+    body: '{"resource":"https://apps.cloudhealthtech.com/mcp","authorization_servers":["https://apps.cloudhealthtech.com"]}'
+    file: well-known/cloudhealth-oauth-protected-resource.json
+  - url: https://apps.cloudhealthtech.com/.well-known/oauth-authorization-server
+    http_status: 200
+    scopes_supported: [mcp:datasets:read, mcp:query:run, mcp:flexorgs:read, mcp:customers:read]
+    file: well-known/cloudhealth-oauth-authorization-server.json
+  - url: https://apps.cloudhealthtech.com/graphql
+    note: >-
+      The anonymous GraphQL schema declares a directive "@mcpTool(name, additionalDescription, directive,
+      scope TenantScope = ALL)" on FIELD_DEFINITION | OBJECT, indicating MCP tools are generated from annotated
+      GraphQL fields (TenantScope DIRECT | PARTNER | ALL).
+    file: graphql/cloudhealth-graphql-public-schema.graphql
+note: >-
+  A hosted MCP server is live and protected by OAuth 2.0 (RFC 9728 resource metadata, RFC 8414
+  authorization-server metadata, PKCE S256, dynamic client registration). No public documentation page
+  for it was found (searched apidocs.cloudhealthtech.com, help.cloudhealthtech.com/graphql-api/ and the
+  web, 2026-09-16). tools/list is auth-gated, so no tool names or inputSchemas are recorded here — none are
+  invented. The four scope names suggest dataset reads, query execution, FlexOrg reads and (partner)
+  customer reads.
+tools: []
+tools_gated: true

@@ -1,0 +1,41 @@
+generated: '2026-09-16'
+method: searched
+source: https://apidocs.cloudhealthtech.com/#documentation_welcome
+versioning:
+  scheme: uri-path (/v1/, /v2/) plus an api_version query parameter on asset search
+  current: v1 (most REST resources); v2 for organizations and AWS account assignments
+  note: The REST guide documents Version 1 and Version 2 of the Partner AWS Account Assignment endpoints side by
+    side, and api_version=1 (default) / 2 on GET /api/search.
+  docs: https://apidocs.cloudhealthtech.com/
+change_communication:
+  statement: '"This API continues to be under development and will evolve. CloudHealth sends information on additions
+    and changes to the API in the Product Updates emails that go out to all customers."'
+  channel: customer Product Updates emails (not public)
+  docs: https://apidocs.cloudhealthtech.com/#documentation_welcome
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation policy or Sunset/Deprecation header support. The GraphQL schema marks fields with
+    @deprecated and dated removal notes (RecipientsInput.email and Recipients.email — "Will be removed on or after
+    2023-11-01"; use userRecipients instead).
+  evidence: graphql/cloudhealth-graphql-public-schema.graphql
+deprecated_operations: []
+deprecated_fields:
+  - graphql: RecipientsInput.email
+    replacement: userRecipients[].email
+    removal: on or after 2023-11-01
+  - graphql: Recipients.email
+    replacement: userRecipients
+    removal: on or after 2023-11-01
+sla:
+  url: null
+status_page:
+  url: null
+  note: https://status.cloudhealthtech.com/ redirects to https://cloudhealthtech.statuspage.io/inactive ("Page
+    Inactive", probed 2026-09-16) — no live status page.
+support:
+  url: https://support.broadcom.com/
+product_lifecycle:
+  note: CloudHealth was acquired by VMware (2018) and is now VMware Tanzu CloudHealth under Broadcom; the legacy
+    GitHub API guide repo (github.com/CloudHealth/cht_api_guide) is archived and the Broadcom GitHub org has
+    migrated repositories internally.

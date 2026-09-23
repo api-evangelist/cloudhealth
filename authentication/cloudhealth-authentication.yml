@@ -1,13 +1,86 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/cloudhealth-openapi.yml
+generated: '2026-09-16'
+method: searched
+source: https://apidocs.cloudhealthtech.com/#documentation_getting-your-api-key
+docs:
+  - https://apidocs.cloudhealthtech.com/#documentation_how-to-use-the-cloudhealth-api
+  - https://apidocs.cloudhealthtech.com/#documentation_getting-your-api-key
+  - https://help.cloudhealthtech.com/graphql-api/#authentication
+  - https://apps.cloudhealthtech.com/.well-known/oauth-authorization-server
+note: Upgraded from the spec-derived profile (openapi/ files are API Evangelist-authored from the docs, see
+  openapi/_ae-authored/README.md). The REST, GraphQL and MCP surfaces authenticate three different ways.
 summary:
   types:
-  - http
+    - http
+    - apiKey
+    - oauth2
+  api_key_in:
+    - header
+    - query
+  oauth2_flows:
+    - authorizationCode
+    - clientCredentials
+    - refreshToken
 schemes:
-- name: bearerAuth
-  type: http
-  scheme: bearer
-  description: Bearer token issued from the CloudHealth UI.
-  sources:
-  - openapi/cloudhealth-openapi.yml
+  - name: bearerAuth
+    surface: REST API (https://chapi.cloudhealthtech.com)
+    type: http
+    scheme: bearer
+    description: >-
+      Per-user API key (a GUID generated under My Profile > API Key) sent as
+      "Authorization: Bearer <api_key>". Every request must also send Accept: application/json
+      (or Content-Type: application/json). Generating a new key invalidates the previous one; the
+      docs recommend periodic rotation. The API enforces the same organization scoping and role
+      restrictions as the CloudHealth UI.
+    evidence: https://apidocs.cloudhealthtech.com/#documentation_how-to-use-the-cloudhealth-api
+    sources:
+      - openapi/cloudhealth-aws-accounts-api-openapi.yml
+      - openapi/cloudhealth-perspectives-api-openapi.yml
+      - openapi/cloudhealth-reports-api-openapi.yml
+      - openapi/cloudhealth-search-api-openapi.yml
+      - openapi/cloudhealth-sso-api-openapi.yml
+  - name: apiKeyQuery
+    surface: REST API (https://chapi.cloudhealthtech.com)
+    type: apiKey
+    in: query
+    parameter: api_key
+    description: The same API key may instead be passed as the api_key query parameter.
+    evidence: https://apidocs.cloudhealthtech.com/#documentation_how-to-use-the-cloudhealth-api
+  - name: graphqlAccessToken
+    surface: GraphQL API (https://apps.cloudhealthtech.com/graphql)
+    type: http
+    scheme: bearer
+    description: >-
+      Exchange the API key for a token pair with the loginAPI(apiKey) mutation (no auth required),
+      then send "Authorization: Bearer <accessToken>". Access tokens are valid for 15 minutes; the
+      refresh token (refresh(token) mutation) is valid for 9 hours. loginCspService / loginCspUser
+      exchange VMware Cloud Services Platform tokens. FlexOrg sub-organizations require their own
+      token.
+    token_lifetimes:
+      access_token: 15 minutes
+      refresh_token: 9 hours
+    token_exchange_operations: [loginAPI, login, refresh, loginCspService, loginCspUser]
+    evidence:
+      - https://help.cloudhealthtech.com/graphql-api/#authentication
+      - graphql/cloudhealth-graphql-public-schema.graphql
+  - name: mcpOAuth
+    surface: MCP server (https://apps.cloudhealthtech.com/mcp)
+    type: oauth2
+    description: >-
+      The MCP endpoint answers unauthenticated requests with 401 and
+      WWW-Authenticate: Bearer resource_metadata="https://apps.cloudhealthtech.com/.well-known/oauth-protected-resource"
+      (RFC 9728). The authorization server publishes RFC 8414 metadata with PKCE (S256), dynamic
+      client registration and client ID metadata documents.
+    issuer: https://apps.cloudhealthtech.com
+    authorizationUrl: https://apps.cloudhealthtech.com/oauth2/authorize
+    tokenUrl: https://apps.cloudhealthtech.com/oauth2/token
+    revocationUrl: https://apps.cloudhealthtech.com/oauth2/revoke
+    registrationUrl: https://apps.cloudhealthtech.com/oauth2/register
+    jwks_uri: https://apps.cloudhealthtech.com/oauth2/jwks
+    flows: [authorizationCode, clientCredentials, refreshToken]
+    pkce: [S256]
+    token_endpoint_auth_methods: [client_secret_basic, client_secret_post, none]
+    scope_count: 4
+    scopes_ref: scopes/cloudhealth-scopes.yml
+    evidence:
+      - well-known/cloudhealth-oauth-authorization-server.json
+      - well-known/cloudhealth-oauth-protected-resource.json

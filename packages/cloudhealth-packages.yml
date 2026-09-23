@@ -1,0 +1,41 @@
+generated: '2026-09-16'
+method: searched
+source: registry metadata endpoints (pypi.org, registry.npmjs.org, rubygems.org, registry.terraform.io) + github.com/CloudHealth
+note: >-
+  No first-party SDK, CLI or Terraform provider found. The CloudHealth GitHub org (github.com/CloudHealth)
+  holds only archived repositories, several marked as migrated to Broadcom's internal GitHub; its API guide
+  source (cht_api_guide) is archived. npm and RubyGems have no "cloudhealth" package (404). The packages
+  below are community-maintained and are NOT official.
+packages:
+  - name: cloudhealth-client
+    registry: pypi
+    url: https://pypi.org/project/cloudhealth-client/
+    official: false
+    maintainer: Alberto Narro
+    repository: https://github.com/albertonarro/cloudhealth-client
+    version: 0.5.0
+    published: '2023-03-02'
+    description: A REST Client for Cloudhealth
+  - name: cloudhealth
+    registry: pypi
+    url: https://pypi.org/project/cloudhealth/
+    official: false
+    maintainer: Nir Cohen
+    version: 0.1.1
+    published: '2016-07-21'
+    description: A REST Client for Cloudhealth
+  - name: honkyjive/cloudhealth
+    registry: terraform
+    url: https://registry.terraform.io/providers/honkyjive/cloudhealth/latest
+    official: false
+    repository: https://github.com/honkyjive/terraform-provider-cloudhealth
+    version: 1.0.1
+    published: '2020-10-13'
+    description: Community Terraform provider for CloudHealth
+  - name: Yelp/terraform-provider-cloudhealth
+    registry: github
+    url: https://github.com/Yelp/terraform-provider-cloudhealth
+    official: false
+    version: null
+    published: null
+    note: Source-only community provider (perspectives as a Terraform resource); repository archived, last push 2023-03-24.

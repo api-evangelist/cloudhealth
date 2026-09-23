@@ -1,0 +1,35 @@
+generated: '2026-09-16'
+method: probed
+source: https://apps.cloudhealthtech.com/.well-known/oauth-authorization-server
+note: No OAuth scheme is declared in the (API Evangelist-authored) OpenAPI and the docs publish no scope reference
+  page; these scopes are read verbatim from the authorization server's RFC 8414 metadata (scopes_supported), which
+  protects the MCP server at https://apps.cloudhealthtech.com/mcp. Descriptions are not published by the provider.
+docs: null
+schemes:
+  - name: CloudHealthOAuth
+    source: well-known/cloudhealth-oauth-authorization-server.json
+    protects: https://apps.cloudhealthtech.com/mcp
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://apps.cloudhealthtech.com/oauth2/authorize
+        tokenUrl: https://apps.cloudhealthtech.com/oauth2/token
+        pkce: S256
+      - flow: clientCredentials
+        tokenUrl: https://apps.cloudhealthtech.com/oauth2/token
+scopes:
+  - scope: mcp:datasets:read
+    description: null
+    flows: [authorizationCode, clientCredentials]
+    sources: [well-known/cloudhealth-oauth-authorization-server.json]
+  - scope: mcp:query:run
+    description: null
+    flows: [authorizationCode, clientCredentials]
+    sources: [well-known/cloudhealth-oauth-authorization-server.json]
+  - scope: mcp:flexorgs:read
+    description: null
+    flows: [authorizationCode, clientCredentials]
+    sources: [well-known/cloudhealth-oauth-authorization-server.json]
+  - scope: mcp:customers:read
+    description: null
+    flows: [authorizationCode, clientCredentials]
+    sources: [well-known/cloudhealth-oauth-authorization-server.json]
