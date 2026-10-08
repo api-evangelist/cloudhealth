@@ -194,6 +194,8 @@ apis:
   - url: rate-limits/cloudhealth-rate-limits.yml
     type: RateLimits
 common:
+- type: FinOps
+  url: finops/cloudhealth-finops.yml
 - type: CapabilityMap
   url: capabilities/cloudhealth-capability-edges.yml
   name: CloudHealth Business Capability Map
