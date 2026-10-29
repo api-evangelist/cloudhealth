@@ -1,4 +1,4 @@
-# CloudHealth (cloudhealth)
+# CloudHealth
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,99 +66,174 @@
 
 CloudHealth (now VMware Tanzu CloudHealth, owned by Broadcom) is a multi-cloud financial and operational management platform. It provides cost visibility, optimization recommendations, asset inventory, custom perspectives (groupings), policies, governance, and partner/MSP billing workflows across AWS, Azure, GCP, Oracle, and data center environments. The platform exposes both a REST API and a GraphQL API for programmatic access to reports, assets, accounts, perspectives, tags, metrics, and partner customer provisioning.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cloudhealth/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cloudhealth/refs/heads/main/apis.yml)
+**Areas:** Cloud Cost · Cloud Governance · Cloud Management · Cost Optimization · FinOps · Multi-Cloud
 
-## Scope
+## CloudHealth on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for CloudHealth is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cloudhealth/](https://apis.io/providers/cloudhealth/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- Cloud Cost
-- Cloud Governance
-- Cloud Management
-- Cost Optimization
-- FinOps
-- Multi-Cloud
+- [CloudHealth GraphQL API](https://apis.io/apis/cloudhealth/cloudhealth-graphql-api/) — GraphQL API at a single endpoint (https://apps.cloudhealthtech.com/graphql) covering budgets, FlexReports, FlexOrgs, saved reports, savings plan and…
+- [CloudHealth Partner API](https://apis.io/apis/cloudhealth/cloudhealth-partner-api/) — Partner-specific REST endpoints for MSPs to provision customers, assign AWS/Azure accounts, manage custom price books, billing rules, and customer…
+- [CloudHealth AWS Accounts API](https://apis.io/apis/cloudhealth/cloudhealth-aws-accounts-api/) — AWS account configuration management.
+- [CloudHealth Perspectives API](https://apis.io/apis/cloudhealth/cloudhealth-perspectives-api/) — Perspective (grouping) management.
+- [CloudHealth Reports API](https://apis.io/apis/cloudhealth/cloudhealth-reports-api/) — OLAP cost and usage reports.
+- [CloudHealth Search API](https://apis.io/apis/cloudhealth/cloudhealth-search-api/) — Asset search.
+- [CloudHealth SSO API](https://apis.io/apis/cloudhealth/cloudhealth-sso-api/) — Single sign-on configuration.
+- [CloudHealth Platform API](https://apis.io/apis/cloudhealth/cloudhealth-platform-api/) — The CloudHealth Platform REST API programmatically retrieves and manages data from the CloudHealth Platform — AWS/Azure/GCP accounts, assets, perspectives,…
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### CloudHealth REST API
+GraphQL schemas.
 
-REST API at https://chapi.cloudhealthtech.com for managing AWS/Azure accounts, generating OLAP cost and usage reports, querying assets, managing perspectives (groupings), tagging, metrics ingest/query, policies, and partner-tenant provisioning. Authentication uses Bearer tokens issued from the CloudHealth UI.
+- [CloudHealth GraphQL API](https://apis.io/graphqls/cloudhealth/cloudhealth-graphql/)
 
-- **Human URL:** [https://apidocs.cloudhealthtech.com/](https://apidocs.cloudhealthtech.com/)
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- Assets
-- Cost Optimization
-- Perspectives
-- Reports
+- [cloudhealth](https://apis.io/servers/cloudhealth/cloudhealth/)
 
-#### Properties
+#### Agentic access (1)
 
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Cloudhealth Agentic Access](https://apis.io/agentic-access/cloudhealth/cloudhealth-agentic-access/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Cloudhealth Context](https://apis.io/jsonld/cloudhealth/cloudhealth-context/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [CloudHealth REST API](https://apis.io/collections/cloudhealth/open-cloudhealth/)
+- [CloudHealth REST AWS Accounts API](https://apis.io/collections/cloudhealth/open-cloudhealth-aws-accounts-api/)
+- [CloudHealth REST AWS Accounts Perspectives API](https://apis.io/collections/cloudhealth/open-cloudhealth-perspectives-api/)
+- [CloudHealth REST AWS Accounts Reports API](https://apis.io/collections/cloudhealth/open-cloudhealth-reports-api/)
+- [CloudHealth REST AWS Accounts Search API](https://apis.io/collections/cloudhealth/open-cloudhealth-search-api/)
+- [CloudHealth REST AWS Accounts SSO API](https://apis.io/collections/cloudhealth/open-cloudhealth-sso-api/)
+
+#### Overlays (5)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Cloudhealth Aws Accounts Overlay](https://apis.io/overlays/cloudhealth/cloudhealth-aws-accounts-overlay/)
+- [Cloudhealth Perspectives Overlay](https://apis.io/overlays/cloudhealth/cloudhealth-perspectives-overlay/)
+- [Cloudhealth Reports Overlay](https://apis.io/overlays/cloudhealth/cloudhealth-reports-overlay/)
+- [Cloudhealth Search Overlay](https://apis.io/overlays/cloudhealth/cloudhealth-search-overlay/)
+- [Cloudhealth Sso Overlay](https://apis.io/overlays/cloudhealth/cloudhealth-sso-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [CloudHealth API Rules](https://apis.io/rules/cloudhealth/cloudhealth-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cloudhealth Authentication](https://apis.io/security/cloudhealth/cloudhealth-authentication/)
+- [Cloudhealth Domain Security](https://apis.io/security/cloudhealth/cloudhealth-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Cloudhealth Scopes](https://apis.io/scopes/cloudhealth/cloudhealth-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cloudhealth Plans Pricing](https://apis.io/plans/cloudhealth/cloudhealth-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cloudhealth Rate Limits](https://apis.io/rate-limits/cloudhealth/cloudhealth-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cloudhealth Finops](https://apis.io/finops/cloudhealth/cloudhealth-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.broadcom.com/products/software/finops/cloudhealth)
 - [Documentation](https://apidocs.cloudhealthtech.com/)
-- [Authentication](https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests)
-- [OpenAPI](openapi/cloudhealth-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cloudhealth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cloudhealth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [API reference](https://apidocs.cloudhealthtech.com/)
+- [Pricing](https://aws.amazon.com/marketplace/pp/prodview-btyciyjmdewhm)
+- [Support](https://support.broadcom.com/)
+- [Blog](https://blogs.vmware.com/feed/)
+- [Terms of service](https://www.broadcom.com/company/legal/terms-of-use)
+- [Privacy policy](https://www.broadcom.com/company/legal/privacy/policy)
+- [GitHub](https://github.com/CloudHealth)
 
-### CloudHealth GraphQL API
+## API Evangelist rating
 
-GraphQL API exposed in the CloudHealth UI under Setup > Admin > GraphQL Explorer for programmatic interaction with the platform's reporting and asset data model.
+**Kin Score 52.2** — developing · rubric 0.25.0 · scored 2026-10-23
 
-- **Human URL:** [https://apidocs.cloudhealthtech.com/](https://apidocs.cloudhealthtech.com/)
+| Facet | Score |
+|---|---|
+| Discoverability | 73.3 |
+| Contract quality | 57.8 |
+| Contract governance | 29.5 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 31.5 |
+| Access clarity | 69.7 |
 
-#### Tags
+**Agent readiness 40.2** — agent-ready (gated down from agent-native)
 
-- GraphQL
-- Reports
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
 
-#### Properties
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
 
-- [Documentation](https://apidocs.cloudhealthtech.com/)
-- [Postman Collection](collections/cloudhealth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cloudhealth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cloudhealth/](https://apis.io/providers/cloudhealth/).
 
-### CloudHealth Partner API
+## How this profile is made
 
-Partner-specific REST endpoints for MSPs to provision customers, assign AWS/Azure accounts, manage custom price books, billing rules, and customer statements at scale.
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- **Human URL:** [https://apidocs.cloudhealthtech.com/#partner](https://apidocs.cloudhealthtech.com/#partner)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CloudHealth: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-#### Tags
+## Open an issue
 
-- MSP
-- Partner
-- Provisioning
-
-#### Properties
-
-- [Documentation](https://apidocs.cloudhealthtech.com/#partner)
-- [Postman Collection](collections/cloudhealth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cloudhealth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/CloudHealth)
-- [LinkedIn](https://www.linkedin.com/company/cloudhealthtech)
-- [Website](https://www.vmware.com/products/cloud-infrastructure/tanzu-cloudhealth)
-- [Documentation](https://apidocs.cloudhealthtech.com/)
-- [Product  Documentation](https://techdocs.broadcom.com/us/en/vmware-tanzu/cloudhealth/tanzu-cloudhealth/saas/tnz-cloudhealth/index.html)
-- [Authentication](https://apidocs.cloudhealthtech.com/#documentation_authenticating-api-requests)
-- [Privacy Policy](https://www.broadcom.com/company/legal/privacy/policy)
-- [JSON-LD](json-ld/cloudhealth-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/cloudhealth-rules.yml) — [Spectral](https://docs.stoplight.io/docs/spectral)
-
-## Maintainers
-
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cloudhealth/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
