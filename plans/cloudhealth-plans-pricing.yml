@@ -1,0 +1,80 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://aws.amazon.com/marketplace/pp/prodview-btyciyjmdewhm
+sources:
+- https://aws.amazon.com/marketplace/pp/prodview-btyciyjmdewhm
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T161713
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+  managed_tier: CH150K
+published: true
+note: AWS Marketplace SaaS listing; 12/24/36-month contract options shown, only 12-month dimensions itemized
+  with prices. 36-month contract noted as 'save up to 12%'. Additional usage dimension 'Over Contractual
+  Amount' at $0.03/unit.
+plan_count: 3
+currency: USD
+plans:
+- name: CH150K (12-month contract)
+  price_text: $45,000.00
+  price: 45000
+  currency: USD
+  period: year
+  unit: contract
+  included_quota: Manage up to $150K of monthly AWS spend. Addl fees above $150K/mo.
+  overage: Over Contractual Amount $0.03
+- name: CH300K (12-month contract)
+  price_text: $90,000.00
+  price: 90000
+  currency: USD
+  period: year
+  unit: contract
+  included_quota: Manage up to $300K of monthly AWS spend. Addl fees above $300K/mo.
+  overage: Over Contractual Amount $0.03
+- name: CH500K (12-month contract)
+  price_text: $150,000.00
+  price: 150000
+  currency: USD
+  period: year
+  unit: contract
+  included_quota: Manage up to $500K of monthly AWS spend. Addl fees above $500K/mo.
+  overage: Over Contractual Amount $0.03
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  units:
+  - negotiated
+  plans:
+  - name: CH150K (12-month contract)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - year
+  - name: CH300K (12-month contract)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - year
+  - name: CH500K (12-month contract)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - year
