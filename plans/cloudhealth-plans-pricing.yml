@@ -47,7 +47,7 @@ plans:
   included_quota: Manage up to $500K of monthly AWS spend. Addl fees above $500K/mo.
   overage: Over Contractual Amount $0.03
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
