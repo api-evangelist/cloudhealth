@@ -53,6 +53,9 @@ artifacts:
   conventions/cloudhealth-conventions.yml:
     method: searched
     evidence: declared in the artifact
+  data-model/cloudhealth-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
   errors/cloudhealth-problem-types.yml:
     method: searched
     evidence: declared in the artifact
@@ -71,7 +74,25 @@ artifacts:
   heartbeat/2026-11-02.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-06.yml:
+    method: unknown
+    evidence: no authorship recorded
+  hosts/cloudhealth-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/cloudhealth-integration-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/cloudhealth-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/cloudhealth-generic-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/cloudhealth-generic-response-schema.json:
     method: unknown
     evidence: no authorship recorded
   kin/checks-2026-10-23T222754.yml:
@@ -183,7 +204,10 @@ artifacts:
     method: derived
     evidence: an API Evangelist overlay (title) over the provider's contract
   packages/cloudhealth-packages.yml:
-    method: searched
+    method: unknown
+    evidence: no authorship recorded
+  patterns/cloudhealth-patterns.yml:
+    method: derived
     evidence: declared in the artifact
   plans/cloudhealth-plans-pricing.yml:
     method: searched
@@ -214,6 +238,12 @@ artifacts:
     evidence: declared in the artifact
   sla/cloudhealth-sla.yml:
     method: generated
+    evidence: declared in the artifact
+  vendors/cloudhealth-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/cloudhealth-vocabulary.yml:
+    method: derived
     evidence: declared in the artifact
   well-known/cloudhealth-oauth-authorization-server.json:
     method: unknown

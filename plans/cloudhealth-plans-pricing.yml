@@ -2,6 +2,7 @@
 generated: '2026-10-28'
 method: searched
 source: https://aws.amazon.com/marketplace/pp/prodview-btyciyjmdewhm
+name: CloudHealth API Plans
 sources:
 - https://aws.amazon.com/marketplace/pp/prodview-btyciyjmdewhm
 provenance:
@@ -47,7 +48,7 @@ plans:
   included_quota: Manage up to $500K of monthly AWS spend. Addl fees above $500K/mo.
   overage: Over Contractual Amount $0.03
 x-canonical:
-  generated: '2026-11-02'
+  generated: '2026-11-06'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
